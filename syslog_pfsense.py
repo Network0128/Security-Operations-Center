@@ -7,6 +7,9 @@ print("pfSense 방화벽 상세 로그 모니터링을 시작한다... (종료: 
 # tail -F 명령어를 사용하여 /var/log/syslog 파일의 끝부분을 실시간으로 추적 시작
 process = subprocess.Popen(['tail', '-F', '/var/log/syslog'], stdout=subprocess.PIPE, text=True)
 
+# 하나의 syslog 파일을 사용하는 대신, 분리 저장된 pfsense.log 파일만 추적할 경우 아래와 같이 수정
+# process = subprocess.Popen(['tail', '-F', '/var/log/pfsense.log'], stdout=subprocess.PIPE, text=True)
+
 # 파이프를 통해 들어오는 터미널 출력 데이터를 한 줄씩 무한 반복하며 읽어들임
 for line in process.stdout:
     
